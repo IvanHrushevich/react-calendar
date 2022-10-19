@@ -1,7 +1,7 @@
 import { RouteObject, Navigate } from 'react-router-dom';
 
-import Login from '../components/Login';
-import Event from '../components/Event';
+import Login from '../pages/Login';
+import Event from '../pages/Event';
 
 const enum Route {
   LOGIN = '/login',

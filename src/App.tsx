@@ -1,7 +1,9 @@
+import { Layout } from 'antd';
 import { FC, useRef } from 'react';
 import { createBrowserRouter, RouteObject, RouterProvider } from 'react-router-dom';
 
 import './App.css';
+import Navbar from './components/Navbar';
 import { privateRoutes, publicRoutes } from './router';
 
 const App: FC = () => {
@@ -9,7 +11,14 @@ const App: FC = () => {
   const routes: RouteObject[] = isAuth ? privateRoutes : publicRoutes;
   const router = useRef(createBrowserRouter(routes));
 
-  return <RouterProvider router={router.current} />;
+  return (
+    <Layout>
+      <Navbar />
+      <Layout.Content>
+        <RouterProvider router={router.current} />
+      </Layout.Content>
+    </Layout>
+  );
 };
 
 export default App;
