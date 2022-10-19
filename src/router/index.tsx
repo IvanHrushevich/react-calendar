@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouteObject, Navigate } from 'react-router-dom';
+import { RouteObject, Navigate } from 'react-router-dom';
 
 import Login from '../components/Login';
 import Event from '../components/Event';
@@ -9,10 +9,12 @@ const enum Route {
   OTHER = '*',
 }
 
-const routes: RouteObject[] = [
+export const publicRoutes: RouteObject[] = [
   { path: Route.LOGIN, element: <Login /> },
-  { path: Route.CALENDAR, element: <Event /> },
   { path: Route.OTHER, element: <Navigate to={Route.CALENDAR} /> },
 ];
 
-export const router = createBrowserRouter(routes);
+export const privateRoutes: RouteObject[] = [
+  { path: Route.CALENDAR, element: <Event /> },
+  { path: Route.OTHER, element: <Navigate to={Route.CALENDAR} /> },
+];
