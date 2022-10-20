@@ -13,24 +13,24 @@ enum MenuKey {
 const MENU_ITEMS_PUBLIC: ItemType[] = [{ label: 'Log in', key: MenuKey.LOG_IN }];
 const MENU_ITEMS_PRIVATE: ItemType[] = [{ label: 'Log out', key: MenuKey.LOG_OUT }];
 
+const onMenuClick: MenuClickEventHandler = (info: MenuInfo) => {
+  // TODO: implement logic
+  switch (info.key) {
+    case MenuKey.LOG_IN:
+      break;
+
+    case MenuKey.LOG_OUT:
+      break;
+
+    default:
+      break;
+  }
+};
+
 const Navbar: FC = () => {
   //   const navigate = useNavigate();
   const { isAuth } = useTypedSelector((state) => state.auth);
   const menuItems: ItemType[] = isAuth ? MENU_ITEMS_PRIVATE : MENU_ITEMS_PUBLIC;
-
-  const onMenuClick: MenuClickEventHandler = (info: MenuInfo) => {
-    // TODO: implement logic
-    switch (info.key) {
-      case MenuKey.LOG_IN:
-        break;
-
-      case MenuKey.LOG_OUT:
-        break;
-
-      default:
-        break;
-    }
-  };
 
   return (
     <Layout.Header>
