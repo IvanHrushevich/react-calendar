@@ -3,8 +3,12 @@ import { FC } from 'react';
 import { rules } from '../utils/rules';
 
 const LoginForm: FC = () => {
+  const submit = () => {
+    console.log('submit');
+  };
+
   return (
-    <Form>
+    <Form onFinish={submit}>
       <Form.Item label="Username" name="username" rules={[rules.required('Please input your username!')]}>
         <Input />
       </Form.Item>
