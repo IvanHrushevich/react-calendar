@@ -1,4 +1,6 @@
 import { Navigate, RouteObject, Routes, Route } from 'react-router-dom';
+
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import CalendarPage from '../pages/CalendarPage';
 import LoginPage from '../pages/LoginPage';
 
@@ -27,7 +29,7 @@ const getRoutes = (routes: RouteObject[]) => (
 );
 
 const AppRouter = () => {
-  const isAuth = false;
+  const { isAuth } = useTypedSelector((state) => state.auth);
   return getRoutes(isAuth ? privateRoutes : publicRoutes);
 };
 

@@ -1,10 +1,16 @@
 import { Button, Form, Input } from 'antd';
 import { FC } from 'react';
+
+import { useAppDispatch } from '../hooks/useAppDispatch';
+import { AuthActionCreators } from '../store/reducers/auth/action-creators';
 import { rules } from '../utils/rules';
 
 const LoginForm: FC = () => {
+  // TODO: fix AuthAction
+  const dispatch: any = useAppDispatch();
+
   const submit = () => {
-    console.log('submit');
+    dispatch(AuthActionCreators.login('user', '123'));
   };
 
   return (

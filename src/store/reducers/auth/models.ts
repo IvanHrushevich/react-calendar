@@ -33,4 +33,5 @@ export interface SetErrorAction {
   payload: string;
 }
 
+// TODO: fix AuthAction
 export type AuthAction = SetAuthAction | SetUserAction | SetIsLoadingAction | SetErrorAction;
