@@ -1,8 +1,8 @@
-import { Navigate, RouteObject, Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Navigate, RouteObject, Routes, Route } from 'react-router-dom';
 import CalendarPage from '../pages/CalendarPage';
 import LoginPage from '../pages/LoginPage';
 
-const enum RouteEnum {
+export const enum RouteEnum {
   LOGIN = '/login',
   CALENDAR = '/calendar',
   OTHER = '*',
@@ -28,7 +28,7 @@ const getRoutes = (routes: RouteObject[]) => (
 
 const AppRouter = () => {
   const isAuth = false;
-  return <BrowserRouter>{getRoutes(isAuth ? privateRoutes : publicRoutes)}</BrowserRouter>;
+  return getRoutes(isAuth ? privateRoutes : publicRoutes);
 };
 
 export default AppRouter;
