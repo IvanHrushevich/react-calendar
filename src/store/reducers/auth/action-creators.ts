@@ -5,7 +5,7 @@ import { User } from '../../../models/User';
 import { AuthActionEnum, SetAuthAction, SetErrorAction, SetIsLoadingAction, SetUserAction } from './models';
 
 export const AuthActionCreators = {
-  setUser: (user: User): SetUserAction => ({ type: AuthActionEnum.SET_USER, payload: user }),
+  setUser: (user: User | null): SetUserAction => ({ type: AuthActionEnum.SET_USER, payload: user }),
   setIsAuth: (isAuth: boolean): SetAuthAction => ({ type: AuthActionEnum.SET_AUTH, payload: isAuth }),
   setIsLoading: (isLoading: boolean): SetIsLoadingAction => ({
     type: AuthActionEnum.SET_IS_LOADING,
@@ -39,5 +39,12 @@ export const AuthActionCreators = {
       dispatch(AuthActionCreators.setError('Log in error'));
       dispatch(AuthActionCreators.setIsLoading(false));
     }
+  },
+
+  logout: () => async (dispatch: AppDispatch) => {
+    localStorage.removeItem('auth');
+    localStorage.removeItem('username');
+    dispatch(AuthActionCreators.setIsAuth(false));
+    dispatch(AuthActionCreators.setUser(null));
   },
 };
