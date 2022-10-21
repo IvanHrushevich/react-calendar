@@ -32,10 +32,11 @@ export const AuthActionCreators = {
         } else {
           dispatch(AuthActionCreators.setError('Wrong username or password'));
         }
-      }, 1000);
+
+        dispatch(AuthActionCreators.setIsLoading(false));
+      }, 1500);
     } catch (error) {
       dispatch(AuthActionCreators.setError('Log in error'));
-    } finally {
       dispatch(AuthActionCreators.setIsLoading(false));
     }
   },
