@@ -1,8 +1,7 @@
-import axios from 'axios';
-
 import { AppDispatch } from './../../index';
 import { User } from '../../../models/User';
 import { AuthActionEnum, SetAuthAction, SetErrorAction, SetIsLoadingAction, SetUserAction } from './models';
+import UserService from '../../../api/UserService';
 
 export const AuthActionCreators = {
   setUser: (user: User | null): SetUserAction => ({ type: AuthActionEnum.SET_USER, payload: user }),
@@ -19,7 +18,7 @@ export const AuthActionCreators = {
 
       // fake timeout just to simulate http call
       setTimeout(async () => {
-        const response = await axios.get<User[]>('./users.json');
+        const response = await UserService.getUsers();
         const user: User | undefined = response.data.find(
           (user) => user.username === username && user.password === password
         );

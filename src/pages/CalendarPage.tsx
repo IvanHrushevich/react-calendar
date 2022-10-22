@@ -1,11 +1,17 @@
 import { Button, Layout, Modal, Row } from 'antd';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import EventCalendar from '../components/EventCalendar';
 import EventForm from '../components/EventForm';
+import { useActions } from '../hooks/useActions';
 
 const CalendarPage: FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const { fetchGuests } = useActions();
+
+  useEffect(() => {
+    fetchGuests();
+  }, []);
 
   return (
     <Layout>

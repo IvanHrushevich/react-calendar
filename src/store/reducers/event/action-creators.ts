@@ -1,4 +1,4 @@
-import axios from 'axios';
+import UserService from '../../../api/UserService';
 
 import { User } from '../../../models/User';
 import { AppDispatch } from '../../index';
@@ -11,7 +11,8 @@ export const EventActionCreators = {
 
   fetchGuests: () => async (dispatch: AppDispatch) => {
     try {
-      const guests: User[] = await axios.get('./users.json');
+      const response = await UserService.getUsers();
+      dispatch(EventActionCreators.setGuests(response.data));
     } catch (error) {
       console.log('error', error);
     }
