@@ -9,21 +9,36 @@ import { IEvent } from '../models/Event';
 
 const CalendarPage: FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const { fetchGuests, createEvent } = useActions();
-  const { guests } = useTypedSelector((state) => state.event);
+  const { fetchGuests, createEvent, fetchEvents } = useActions();
+  const { guests, events } = useTypedSelector((state) => state.event);
+  const { user } = useTypedSelector((state) => state.auth);
 
   useEffect(() => {
     fetchGuests();
+    fetchEvents(user?.username as string);
   }, []);
+
+  const addNewEvent = (event: IEvent) => {
+    createEvent(event);
+    setModalVisible(false);
+  };
 
   return (
     <Layout>
+      {/* TODO: remove  */}
+      <div>
+        {events.map((e) => (
+          <div>
+            {e.author}: {e.description}
+          </div>
+        ))}
+      </div>
       <EventCalendar events={[]} />
       <Row justify="center">
         <Button onClick={() => setModalVisible(true)}>Add Event</Button>
       </Row>
       <Modal title="Create Event" footer={null} open={modalVisible} onCancel={() => setModalVisible(false)}>
-        <EventForm guests={guests} submit={(event: IEvent) => createEvent(event)} />
+        <EventForm guests={guests} submit={addNewEvent} />
       </Modal>
     </Layout>
   );
