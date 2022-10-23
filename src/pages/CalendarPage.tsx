@@ -25,15 +25,7 @@ const CalendarPage: FC = () => {
 
   return (
     <Layout>
-      {/* TODO: remove  */}
-      <div>
-        {events.map((e) => (
-          <div>
-            {e.author}: {e.description}
-          </div>
-        ))}
-      </div>
-      <EventCalendar events={[]} />
+      <EventCalendar events={events} />
       <Row justify="center">
         <Button onClick={() => setModalVisible(true)}>Add Event</Button>
       </Row>
