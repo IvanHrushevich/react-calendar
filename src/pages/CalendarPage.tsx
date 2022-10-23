@@ -4,10 +4,12 @@ import { FC, useEffect, useState } from 'react';
 import EventCalendar from '../components/EventCalendar';
 import EventForm from '../components/EventForm';
 import { useActions } from '../hooks/useActions';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 
 const CalendarPage: FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const { fetchGuests } = useActions();
+  const { guests } = useTypedSelector((state) => state.event);
 
   useEffect(() => {
     fetchGuests();
@@ -20,7 +22,7 @@ const CalendarPage: FC = () => {
         <Button onClick={() => setModalVisible(true)}>Add Event</Button>
       </Row>
       <Modal title="Create Event" footer={null} open={modalVisible} onCancel={() => setModalVisible(false)}>
-        <EventForm />
+        <EventForm guests={guests} />
       </Modal>
     </Layout>
   );
