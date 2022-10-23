@@ -17,4 +17,16 @@ export const EventActionCreators = {
       console.log('error', error);
     }
   },
+  createEvent: (event: IEvent) => async (dispatch: AppDispatch) => {
+    try {
+      const eventsStr: string = localStorage.getItem('events') || '[]';
+      const events: IEvent[] = JSON.parse(eventsStr);
+
+      events.push(event);
+      dispatch(EventActionCreators.setEvents(events));
+      localStorage.setItem('events', JSON.stringify(events));
+    } catch (error) {
+      console.log('error', error);
+    }
+  },
 };
